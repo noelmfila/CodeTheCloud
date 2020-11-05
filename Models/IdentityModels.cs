@@ -29,5 +29,7 @@ namespace CodeTheCloud.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Applicant> Applicants { get; set; }
     }
 }
