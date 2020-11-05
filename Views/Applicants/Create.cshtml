@@ -44,7 +44,7 @@
     <div class="form-group row">
         @Html.LabelFor(m => m.Applicant.BirthDate, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Applicant.BirthDate, new { @class = "date-picker form-control", placeholder = "Set Birth Date", @readonly = "readonly" })
+            @Html.TextBoxFor(m => m.Applicant.BirthDate, new { @class = "date-picker form-control", placeholder = "dd/MM/yyyy", @readonly = "readonly" })
         </div>
     </div>
 
@@ -58,14 +58,14 @@
     <div class="form-group row">
         @Html.LabelFor(m => m.Applicant.Race, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m.Applicant.Race, new SelectList(Model.Races, "Id", "Name"), "Select Race", new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.Applicant.Race, new SelectList(Model.Races, "Name", "Name"), "Select Race", new { @class = "form-control" })
         </div>
     </div>
 
     <div class="form-group row">
         @Html.LabelFor(m => m.Applicant.Qualification, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m.Applicant.Qualification, new SelectList(Model.Qualifications, "Id", "Name"), "Select Qualification", new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.Applicant.Qualification, new SelectList(Model.Qualifications, "Name", "Name"), "Select Qualification", new { @class = "form-control" })
         </div>
     </div>
 
@@ -99,7 +99,7 @@
     <script>
         $(function() {
             $(".date-picker").datepicker({
-                format:'d M yyyy',
+                format:'dd/MM/yyyy',
                 startDate: '-50y',
                 endDate: '-10y',
                 immediateUpdates: true,

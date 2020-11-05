@@ -31,12 +31,14 @@ namespace CodeTheCloud.Models
         }
 
         public DbSet<Applicant> Applicants { get; set; }
+
         public DbSet<Race> Races { get; set; }
 
         public DbSet<Gender> Genders { get; set; }
 
         public DbSet<Qualification> Qualifications { get; set; }
 
+        public DbSet<Document> Documents { get; set; }
 
     }
 }

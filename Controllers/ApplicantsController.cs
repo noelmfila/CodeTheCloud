@@ -8,6 +8,7 @@ using CodeTheCloud.ViewModels;
 
 namespace CodeTheCloud.Controllers
 {
+    [Authorize]
     public class ApplicantsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -29,11 +30,16 @@ namespace CodeTheCloud.Controllers
         }
 
         
-        public ActionResult Create()
+        public ActionResult Create(string id)
         {
-
+            var applicant = new Applicant
+            {
+                UserId = id
+            };
+           
             var model = new ApplicantsViewModel
             {
+                Applicant = applicant,
                 Races = _context.Races.ToList(),
                 Genders = _context.Genders.ToList(),
                 Qualifications = _context.Qualifications.ToList()
@@ -66,8 +72,8 @@ namespace CodeTheCloud.Controllers
 
             _context.Applicants.Add(applicant);
             _context.SaveChanges();
-
             return View();
+            //return RedirectToAction("Documents", "Documents", new {id = model.Applicant.UserId});
         }
 
         // GET: Applicants/Edit/5
@@ -92,6 +98,26 @@ namespace CodeTheCloud.Controllers
             }
         }
 
+        public ActionResult Document(string id)
+        {
+            return View();
+        }
+
+        // POST: Applicants/Edit/5
+        [HttpPost]
+        public ActionResult UploadDocument(DocumentViewModel model)
+        {
+            try
+            {
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
         // GET: Applicants/Delete/5
         public ActionResult Delete(int id)
         {

@@ -194,9 +194,14 @@
     <Compile Include="Migrations\202011051141537_AddQualificationsTable.Designer.cs">
       <DependentUpon>202011051141537_AddQualificationsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011051829065_AddDocumentsTable.cs" />
+    <Compile Include="Migrations\202011051829065_AddDocumentsTable.Designer.cs">
+      <DependentUpon>202011051829065_AddDocumentsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Applicant.cs" />
+    <Compile Include="Models\Document.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -205,6 +210,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ApplicantsViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-datepicker3.min.css" />
@@ -297,6 +303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011051141537_AddQualificationsTable.resx">
       <DependentUpon>202011051141537_AddQualificationsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011051829065_AddDocumentsTable.resx">
+      <DependentUpon>202011051829065_AddDocumentsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
