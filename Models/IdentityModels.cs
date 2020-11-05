@@ -31,5 +31,8 @@ namespace CodeTheCloud.Models
         }
 
         public DbSet<Applicant> Applicants { get; set; }
+        public DbSet<Race> Races { get; set; }
+        public DbSet<Gender> Genders { get; set; }
+
     }
 }
