@@ -9,12 +9,11 @@ namespace CodeTheCloud.Models
 {
     public class Applicant
     {
+        [Key]
         public int Id { get; set; }
 
         public string UserId { get; set; }
-
-        [ForeignKey(nameof(UserId))]
-        public virtual ApplicationUser User { get; set; }
+        public ApplicationUser User { get; set; }
 
         [Required]
         [Display(Name = "First Name")]
@@ -45,9 +44,9 @@ namespace CodeTheCloud.Models
 
         [Required]
         [Display(Name = "Contact Number")]
-        [MinLength(10, ErrorMessage = "Please enter valid mobile number")]
-        [MaxLength(10, ErrorMessage = "Please enter valid mobile number")]
-        [RegularExpression("^0[0-9]*$", ErrorMessage = "Mobile number must be numeric")]
+        [MinLength(10, ErrorMessage = "Please enter valid contact number")]
+        [MaxLength(10, ErrorMessage = "Please enter valid contact number")]
+        [RegularExpression("^0[0-9]*$", ErrorMessage = "Contact number must be numeric")]
         public string ContactNumber { get; set; }
 
         [Required]
