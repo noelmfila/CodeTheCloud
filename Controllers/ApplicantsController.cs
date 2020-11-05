@@ -31,6 +31,7 @@ namespace CodeTheCloud.Controllers
         
         public ActionResult Create()
         {
+
             var model = new ApplicantsViewModel
             {
                 Races = _context.Races.ToList(),
@@ -46,6 +47,25 @@ namespace CodeTheCloud.Controllers
         {
             if (!ModelState.IsValid)
                 return View(model);
+
+            var applicant = new Applicant
+            {
+                FirstName = model.Applicant.FirstName,
+                Surname = model.Applicant.Surname,
+                UserId = model.Applicant.UserId,
+                Gender = model.Applicant.Gender,
+                Race = model.Applicant.Race,
+                IdNumber = model.Applicant.IdNumber,
+                BirthDate = model.Applicant.BirthDate,
+                ContactNumber = model.Applicant.ContactNumber,
+                Qualification = model.Applicant.Qualification,
+                ResidentialAddress = model.Applicant.ResidentialAddress,
+                Acknowledgement = model.Applicant.Acknowledgement,
+                RegistrationDate = DateTime.Now.ToShortDateString()
+            };
+
+            _context.Applicants.Add(applicant);
+            _context.SaveChanges();
 
             return View();
         }

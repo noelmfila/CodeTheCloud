@@ -33,7 +33,7 @@
     </div>
 
     <div class="form-group row">
-        @Html.LabelFor(m => m.Applicant.Gender, new { @class = "col-md-2 ccontrol-label" })
+        @Html.LabelFor(m => m.Applicant.Gender, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.RadioButtonFor(m => m.Applicant.Gender, "Male")  Male <br />
             @Html.RadioButtonFor(m => m.Applicant.Gender, "Female")  Female  <br />
@@ -44,7 +44,7 @@
     <div class="form-group row">
         @Html.LabelFor(m => m.Applicant.BirthDate, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Applicant.BirthDate, new { @class = "date-picker form-control", placeholder = "Set date", @readonly = "readonly" })
+            @Html.TextBoxFor(m => m.Applicant.BirthDate, new { @class = "date-picker form-control", placeholder = "Set Birth Date", @readonly = "readonly" })
         </div>
     </div>
 
@@ -98,11 +98,13 @@
     <script src="~/Scripts/TsandCs.js"></script>
     <script>
         $(function() {
-            $("#datepicker").datepicker({
-                yearRange: "-80:-10",
-                changeMonth: true,
-                changeYear: true,
-                dateFormat: 'yy-mm-dd'
+            $(".date-picker").datepicker({
+                format:'d M yyyy',
+                startDate: '-50y',
+                endDate: '-10y',
+                immediateUpdates: true,
+                todayHighlight: true,
+                autoClose: true
             });
         });
     </script>
