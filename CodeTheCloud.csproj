@@ -177,6 +177,10 @@
     <Compile Include="Migrations\202011051007416_InitialConfiguration.Designer.cs">
       <DependentUpon>202011051007416_InitialConfiguration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011051010294_AddApplicantsTable.cs" />
+    <Compile Include="Migrations\202011051010294_AddApplicantsTable.Designer.cs">
+      <DependentUpon>202011051010294_AddApplicantsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Applicant.cs" />
@@ -261,6 +265,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202011051007416_InitialConfiguration.resx">
       <DependentUpon>202011051007416_InitialConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011051010294_AddApplicantsTable.resx">
+      <DependentUpon>202011051010294_AddApplicantsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

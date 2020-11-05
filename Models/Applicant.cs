@@ -41,7 +41,7 @@ namespace CodeTheCloud.Models
         [MinLength(13, ErrorMessage = "Please enter a valid ID number")]
         [MaxLength(13, ErrorMessage = "Please enter a valid ID number")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "ID number must be numeric")]
-        public decimal IdNumber { get; set; }
+        public string IdNumber { get; set; }
 
         [Required]
         [Display(Name = "Contact Number")]
