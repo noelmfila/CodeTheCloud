@@ -287,6 +287,8 @@
     <Content Include="Views\Documents\_DocumentsIndex.cshtml" />
     <Content Include="Views\Documents\_CreateDocument.cshtml" />
     <Content Include="Views\Documents\DocumentsInfo.cshtml" />
+    <Content Include="Views\Applicants\Edit.cshtml" />
+    <Content Include="Views\Applicants\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
