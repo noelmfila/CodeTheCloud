@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using CodeTheCloud.Models;
+﻿using CodeTheCloud.Models;
 using CodeTheCloud.ViewModels;
+using System;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace CodeTheCloud.Controllers
 {
@@ -24,19 +22,19 @@ namespace CodeTheCloud.Controllers
         }
 
         // GET: Applicants/Details/5
-        public ActionResult Details(int id)
+        public ActionResult ApplicantDetails(int id)
         {
             return View();
         }
 
-        
+
         public ActionResult Create(string id)
         {
             var applicant = new Applicant
             {
                 UserId = id
             };
-           
+
             var model = new ApplicantsViewModel
             {
                 Applicant = applicant,
@@ -47,7 +45,7 @@ namespace CodeTheCloud.Controllers
             return View(model);
         }
 
-        
+
         [HttpPost]
         public ActionResult Create(ApplicantsViewModel model)
         {
@@ -138,6 +136,11 @@ namespace CodeTheCloud.Controllers
             {
                 return View();
             }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
         }
     }
 }
