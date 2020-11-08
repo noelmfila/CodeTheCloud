@@ -21,9 +21,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Status", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Profile", "Create", "Applicants")</li>
-                    <li>@Html.ActionLink("Documents", "About", "Home")</li>
+                    <li>@Html.ActionLink("Profile Details", "ApplicantDetails", "Applicants")</li>
+                    <li>@Html.ActionLink("Upload Documents", "DocumentsInfo", "Documents", new { id = Url.RequestContext.RouteData.Values["id"]}, null )</li>
 
                 </ul>
                 @Html.Partial("_LoginPartial")
