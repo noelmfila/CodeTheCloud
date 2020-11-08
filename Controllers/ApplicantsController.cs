@@ -1,6 +1,7 @@
 ﻿using CodeTheCloud.Models;
 using CodeTheCloud.ViewModels;
 using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -15,18 +16,14 @@ namespace CodeTheCloud.Controllers
         {
             _context = new ApplicationDbContext();
         }
-        // GET: Applicants
-        public ActionResult Index()
-        {
-            return View();
-        }
 
-        // GET: Applicants/Details/5
+
         public ActionResult ApplicantDetails(int id)
         {
-            return View();
-        }
+            var applicant = _context.Applicants.Find(id);
 
+            return View("Details", applicant);
+        }
 
         public ActionResult Create(string id)
         {
@@ -39,7 +36,6 @@ namespace CodeTheCloud.Controllers
             {
                 Applicant = applicant,
                 Races = _context.Races.ToList(),
-                Genders = _context.Genders.ToList(),
                 Qualifications = _context.Qualifications.ToList()
             };
             return View(model);
@@ -70,73 +66,58 @@ namespace CodeTheCloud.Controllers
 
             _context.Applicants.Add(applicant);
             _context.SaveChanges();
-            return View();
-            //return RedirectToAction("Documents", "Documents", new {id = model.Applicant.UserId});
+           // return View();
+            return RedirectToAction("DocumentsInfo", "Documents", new {id = model.Applicant.UserId});
         }
 
-        // GET: Applicants/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var profile = _context.Applicants.Find(id);
+            
+            var model = new ApplicantsViewModel
+            {
+                Applicant = profile,
+                Races = _context.Races.ToList(),
+                Qualifications = _context.Qualifications.ToList()
+            };
+            return View(model);
         }
 
-        // POST: Applicants/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(ApplicantsViewModel model)
         {
-            try
-            {
-                // TODO: Add update logic here
+            if (!ModelState.IsValid)
+                return View(model);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var dbProfile = _context.Applicants.Find(model.Applicant.Id);
+
+            dbProfile.FirstName = model.Applicant.FirstName;
+            dbProfile.Surname = model.Applicant.Surname;
+            dbProfile.Gender = model.Applicant.Gender;
+            dbProfile.Race = model.Applicant.Race;
+            dbProfile.IdNumber = model.Applicant.IdNumber;
+            dbProfile.BirthDate = model.Applicant.BirthDate;
+            dbProfile.ContactNumber = model.Applicant.ContactNumber;
+            dbProfile.Qualification = model.Applicant.Qualification;
+            dbProfile.ResidentialAddress = model.Applicant.ResidentialAddress;
+            dbProfile.Acknowledgement = model.Applicant.Acknowledgement;
+
+            _context.Entry(dbProfile).State = EntityState.Modified;
+            _context.SaveChanges();
+
+            return RedirectToAction("ApplicantDetails", new {id = model.Applicant.Id});
         }
 
-        public ActionResult Document(string id)
-        {
-            return View();
-        }
+        //public ActionResult Delete(int id)
+        //{
+        //    return View();
+        //}
 
-        // POST: Applicants/Edit/5
-        [HttpPost]
-        public ActionResult UploadDocument(DocumentViewModel model)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        // GET: Applicants/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Applicants/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //[HttpPost]
+        //public ActionResult Delete(int id, FormCollection collection)
+        //{
+        //    return View();
+        //}
 
         protected override void Dispose(bool disposing)
         {

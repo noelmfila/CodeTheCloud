@@ -1,4 +1,4 @@
-﻿@model CodeTheCloud.ViewModels.ApplicantsViewModel
+﻿@model CodeTheCloud.Models.Applicant
 @{
     ViewBag.Title = "Details";
 }
@@ -9,63 +9,63 @@
 {
     <hr />
     <div class="form-group row">
-        @Html.LabelFor(m => m.Applicant.FirstName, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DisplayFor(m => m.Applicant.FirstName, new { @class = "form-control" })
+            @Html.DisplayFor(m => m.FirstName, new { @class = "form-control" })
         </div>
     </div>
 
     <div class="form-group row">
-        @Html.LabelFor(m => m.Applicant.Surname, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.Surname, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DisplayFor(m => m.Applicant.Surname, new { @class = "form-control" })
+            @Html.DisplayFor(m => m.Surname, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group row">
-        @Html.LabelFor(m => m.Applicant.ContactNumber, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.ContactNumber, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DisplayFor(m => m.Applicant.ContactNumber, new { @class = "form-control" })
+            @Html.DisplayFor(m => m.ContactNumber, new { @class = "form-control" })
         </div>
     </div>
 
     <div class="form-group row">
-        @Html.LabelFor(m => m.Applicant.Gender, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DisplayFor(m => m.Applicant.Gender, new { @class = "form-control" })
+            @Html.DisplayFor(m => m.Gender, new { @class = "form-control" })
            
         </div></div>
 
     <div class="form-group row">
-        @Html.LabelFor(m => m.Applicant.BirthDate, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.BirthDate, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DisplayFor(m => m.Applicant.BirthDate, new { @class = "form-control" })
+            @Html.DisplayFor(m => m.BirthDate, new { @class = "form-control" })
         </div>
     </div>
 
     <div class="form-group row">
-        @Html.LabelFor(m => m.Applicant.IdNumber, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.IdNumber, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DisplayFor(m => m.Applicant.IdNumber, new { @class = "form-control" })
+            @Html.DisplayFor(m => m.IdNumber, new { @class = "form-control" })
         </div>
     </div>
 
     <div class="form-group row">
-        @Html.LabelFor(m => m.Applicant.Race, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.Race, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DisplayFor(m => m.Applicant.Race, new { @class = "form-control" })
+            @Html.DisplayFor(m => m.Race, new { @class = "form-control" })
     </div> </div>
 
     <div class="form-group row">
-        @Html.LabelFor(m => m.Applicant.Qualification, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.Qualification, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DisplayFor(m => m.Applicant.Qualification, new { @class = "form-control" })
+            @Html.DisplayFor(m => m.Qualification, new { @class = "form-control" })
         </div>
     </div>
 
     <div class="form-group row">
-        @Html.LabelFor(m => m.Applicant.ResidentialAddress, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.ResidentialAddress, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DisplayFor(m => m.Applicant.ResidentialAddress, new { @class = "form-control" })
+            @Html.DisplayFor(m => m.ResidentialAddress, new { @class = "form-control" })
         </div>
     </div>
 

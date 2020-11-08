@@ -15,12 +15,10 @@
     @{ Html.RenderAction("GetDocuments", "Documents", new { id = Url.RequestContext.RouteData.Values["id"] });}
 </div>
 
-@if (User.IsInRole("SPRCapturer") || User.IsInRole("SPRAdministrator"))
-{
-    <div id="createAndEditDocs">
-        @{Html.RenderAction("UploadDocument", "Documents", new { id = Url.RequestContext.RouteData.Values["id"] });}
-    </div>
-}
+<div id="createAndEditDocs">
+    @{Html.RenderAction("UploadDocument", "Documents", new { id = Url.RequestContext.RouteData.Values["id"] });}
+</div>
+
 <div id="finishUpload" class="offset-md-6">
     <hr/>
     @Html.ActionLink("Finish", "ApplicantDetails", "Applicants", new {id = Url.RequestContext.RouteData.Values["id"]}, null)

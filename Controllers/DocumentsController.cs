@@ -23,6 +23,12 @@ namespace CodeTheCloud.Controllers
             _repository = new DocumentsRepository(_context);
         }
 
+
+        public ActionResult DocumentsInfo(string id)
+        {
+            return View("DocumentsInfo");
+        }
+
         [HttpGet]
         public ActionResult CreateDocument(int id)
         {
@@ -60,19 +66,9 @@ namespace CodeTheCloud.Controllers
 
                 _repository.UpdateDocument(model);
 
-                return RedirectToAction("Information", new { id = model.ApplicantId });
+                return RedirectToAction("DocumentsInfo", new { id = model.ApplicantId });
             }
-
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("DocumentsInfo", new { id = model.ApplicantId });
         }
 
         [HttpGet]
@@ -85,7 +81,7 @@ namespace CodeTheCloud.Controllers
                 return PartialView("_DocumentsIndex", documents);
             }
 
-            return PartialView("SprInformation");
+            return View("DocumentsInfo");
         }
 
         [HttpPost]
