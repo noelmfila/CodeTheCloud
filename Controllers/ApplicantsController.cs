@@ -4,6 +4,7 @@ using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace CodeTheCloud.Controllers
 {
@@ -18,9 +19,11 @@ namespace CodeTheCloud.Controllers
         }
 
 
-        public ActionResult ApplicantDetails(int id)
+        public ActionResult ApplicantDetails()
         {
-            var applicant = _context.Applicants.Find(id);
+            var userId = User.Identity.GetUserId();
+
+            var applicant = _context.Applicants.FirstOrDefault(a => a.UserId == userId);
 
             return View("Details", applicant);
         }
@@ -66,14 +69,17 @@ namespace CodeTheCloud.Controllers
 
             _context.Applicants.Add(applicant);
             _context.SaveChanges();
-           // return View();
-            return RedirectToAction("DocumentsInfo", "Documents", new {id = model.Applicant.UserId});
+            return RedirectToAction("Index", "Home");
+           // return RedirectToAction("DocumentsInfo", "Documents", new {id = model.Applicant.UserId});
         }
 
         public ActionResult Edit(int id)
         {
             var profile = _context.Applicants.Find(id);
-            
+
+            if (profile == null)
+                return HttpNotFound();
+
             var model = new ApplicantsViewModel
             {
                 Applicant = profile,
@@ -90,6 +96,9 @@ namespace CodeTheCloud.Controllers
                 return View(model);
 
             var dbProfile = _context.Applicants.Find(model.Applicant.Id);
+
+            if (dbProfile == null)
+                return HttpNotFound();
 
             dbProfile.FirstName = model.Applicant.FirstName;
             dbProfile.Surname = model.Applicant.Surname;

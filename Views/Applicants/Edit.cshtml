@@ -8,9 +8,10 @@
 @using (Html.BeginForm("Edit", "Applicants", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Applicant.Id)
     @Html.HiddenFor(m => m.Applicant.UserId)
     <hr />
-    @Html.ValidationSummary(true, "Please specify values for all fields!", new { @class = "text-danger" })
+    @Html.ValidationSummary(true, "Please correct the following errors!", new { @class = "text-danger" })
 
     <div class="form-group row">
         @Html.LabelFor(m => m.Applicant.FirstName, new { @class = "col-md-2 control-label" })
@@ -84,7 +85,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create Profile" class="btn btn-default" />
+            <input type="submit" value="Update Profile" class="btn btn-default" />
         </div>
     </div>
 
