@@ -11,7 +11,7 @@
 {
     @Html.AntiForgeryToken()
     <hr />
-    @Html.ValidationSummary(true, "Specify values for the fields below!", new { @class = "text-danger" })
+    @Html.ValidationSummary(true, "Please correct the following errors!", new { @class = "text-danger" })
 
     <div class="form-group">
         @Html.LabelFor(m => m.Applicant.FirstName, new { @class = "col-md-2 control-label" })
@@ -91,12 +91,12 @@
     <script>
         $(function () {
             $(".date-picker").datepicker({
-                format: 'dd/M/yyyy',
+                orientation: 'bottom',
+                format: 'dd-M-yyyy',
                 startDate: '-50y',
-                endDate: '-10y',
+                endDate: '-16y',
                 immediateUpdates: true,
-                todayHighlight: true,
-                autoClose: true
+                autoclose: true
             });
         });
     </script>

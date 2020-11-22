@@ -19,7 +19,6 @@
             @Html.TextBoxFor(m => m.Applicant.FirstName, new { @class = "form-control" })
         </div>
     </div>
-
     <div class="form-group row">
         @Html.LabelFor(m => m.Applicant.Surname, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -32,7 +31,6 @@
             @Html.TextBoxFor(m => m.Applicant.ContactNumber, new { @class = "form-control" })
         </div>
     </div>
-
     <div class="form-group row">
         @Html.LabelFor(m => m.Applicant.Gender, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -41,42 +39,36 @@
             @Html.RadioButtonFor(m => m.Applicant.Gender, "Intersex")  Inter-sex
         </div>
     </div>
-
     <div class="form-group row">
         @Html.LabelFor(m => m.Applicant.BirthDate, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Applicant.BirthDate, new { @class = "date-picker form-control", placeholder = "dd/MM/yyyy", @readonly = "readonly" })
         </div>
     </div>
-
     <div class="form-group row">
         @Html.LabelFor(m => m.Applicant.IdNumber, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Applicant.IdNumber, new { @class = "form-control" })
         </div>
     </div>
-
     <div class="form-group row">
         @Html.LabelFor(m => m.Applicant.Race, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.DropDownListFor(m => m.Applicant.Race, new SelectList(Model.Races, "Name", "Name"), "Select Race", new { @class = "form-control" })
         </div>
     </div>
-
     <div class="form-group row">
         @Html.LabelFor(m => m.Applicant.Qualification, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.DropDownListFor(m => m.Applicant.Qualification, new SelectList(Model.Qualifications, "Name", "Name"), "Select Qualification", new { @class = "form-control" })
         </div>
     </div>
-
     <div class="form-group row">
         @Html.LabelFor(m => m.Applicant.ResidentialAddress, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextAreaFor(m => m.Applicant.ResidentialAddress, new { @class = "form-control" })
         </div>
     </div>
-
     <div class="form-group row">
         <div class="col-md-10">
             @Html.CheckBoxFor(m => m.Applicant.Acknowledgement, new { @class = "control-label" })
@@ -88,9 +80,7 @@
             <input type="submit" value="Update Profile" class="btn btn-default" />
         </div>
     </div>
-
 }
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/bootstrap")
@@ -100,12 +90,12 @@
     <script>
         $(function() {
             $(".date-picker").datepicker({
-                format:'dd/MM/yyyy',
+                orientation: 'bottom',
+                format:'dd-M-yyyy',
                 startDate: '-50y',
-                endDate: '-10y',
+                endDate: '-16y',
                 immediateUpdates: true,
-                todayHighlight: true,
-                autoClose: true
+                autoclose: true
             });
         });
     </script>
