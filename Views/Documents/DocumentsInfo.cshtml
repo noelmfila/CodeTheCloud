@@ -10,18 +10,28 @@
 </head>
 
 <body>
-
-<div id="listOfDocuments">
-    @{ Html.RenderAction("GetDocuments", "Documents", new { id = Url.RequestContext.RouteData.Values["id"] });}
+    <h2 style="color: #f5a004;">
+        Upload Documents
+    </h2>
+<div>
+    Upload supporting documents such as a copy of your Resume/CV, Identity Document and Certificates.
 </div>
+<hr/>
+@Html.Hidden("id", @ViewContext.RouteData.Values["id"])
+
+
+@*<div id="listOfDocuments">
+    @{ Html.RenderAction("GetDocuments", "Documents", new { id = Url.RequestContext.RouteData.Values["id"] });}
+</div>*@
 
 <div id="createAndEditDocs">
-    @{Html.RenderAction("UploadDocument", "Documents", new { id = Url.RequestContext.RouteData.Values["id"] });}
+    @{Html.RenderAction("CreateDocument", "Documents", new {id = ViewContext.RouteData.Values["id"] });}
 </div>
 
-<div id="finishUpload" class="offset-md-6">
-    <hr/>
-    @Html.ActionLink("Finish", "ApplicantDetails", "Applicants", new {id = Url.RequestContext.RouteData.Values["id"]}, null)
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        @Html.ActionLink("Finish", "ApplicantDetails", "Applicants", new {id = Url.RequestContext.RouteData.Values["id"]}, null)
+    </div>
 </div>
 
 </body>

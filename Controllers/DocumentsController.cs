@@ -1,6 +1,7 @@
 ﻿using CodeTheCloud.Models;
 using CodeTheCloud.Repository;
 using CodeTheCloud.ViewModels;
+using Microsoft.AspNet.Identity;
 using Microsoft.Azure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
@@ -23,20 +24,35 @@ namespace CodeTheCloud.Controllers
             _repository = new DocumentsRepository(_context);
         }
 
+        //public ActionResult Upload(DocumentViewModel model)
+        //{
+        //    HttpPostedFileBase file  = model.FormFile;
+        //    if (file != null)
+        //    {
+        //        var docName = Path.GetExtension(file.FileName);
+        //        file.SaveAs(Server.MapPath("//Content//Uploads") + model.FormFile);
+        //    }
+        //    return View();
+        //}
 
-        public ActionResult DocumentsInfo(string id)
+
+        public ActionResult DocumentsInfo()
         {
+           
+
             return View("DocumentsInfo");
         }
 
+
         [HttpGet]
-        public ActionResult CreateDocument(int id)
+        public ActionResult CreateDocument()
         {
             var model = new DocumentViewModel
             {
-                ApplicantId = id
+                ApplicantId = GetCurrentId()
             };
-            return View();
+
+            return PartialView("_CreateDocument", model);
         }
 
         [HttpPost]
@@ -72,8 +88,10 @@ namespace CodeTheCloud.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetDocuments(int id)
+        public ActionResult GetDocuments()
         {
+            var id = GetCurrentId();
+
             var documents = _repository.GetDocument(id);
 
             if (documents.Any() || documents != null)
@@ -141,7 +159,14 @@ namespace CodeTheCloud.Controllers
             CloudBlobContainer container = blobClient.GetContainerReference("someblobstorage");
             return container;
         }
+        private int GetCurrentId()
+        {
+            var userId = User.Identity.GetUserId();
 
+            return _context.Applicants
+                .Where(u => u.UserId == userId)
+                .Select(i => i.Id).FirstOrDefault();
+        }
         protected override void Dispose(bool disposing)
         {
             _context.Dispose();
