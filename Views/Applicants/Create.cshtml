@@ -4,37 +4,34 @@
 }
 
 <h2 style="color: #f5a004;">
-Create Profile
+    Create Profile
 </h2>
 
 @using (Html.BeginForm("Create", "Applicants", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.Applicant.UserId)
     <hr />
     @Html.ValidationSummary(true, "Specify values for the fields below!", new { @class = "text-danger" })
 
-    <div class="form-group row">
+    <div class="form-group">
         @Html.LabelFor(m => m.Applicant.FirstName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Applicant.FirstName, new { @class = "form-control" })
         </div>
     </div>
-
-    <div class="form-group row">
+    <div class="form-group">
         @Html.LabelFor(m => m.Applicant.Surname, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Applicant.Surname, new { @class = "form-control" })
         </div>
     </div>
-    <div class="form-group row">
+    <div class="form-group">
         @Html.LabelFor(m => m.Applicant.ContactNumber, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Applicant.ContactNumber, new { @class = "form-control" })
         </div>
     </div>
-
-    <div class="form-group row">
+    <div class="form-group">
         @Html.LabelFor(m => m.Applicant.Gender, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.RadioButtonFor(m => m.Applicant.Gender, "Male")  Male <br />
@@ -42,66 +39,59 @@ Create Profile
             @Html.RadioButtonFor(m => m.Applicant.Gender, "Intersex")  Inter-sex
         </div>
     </div>
-
-    <div class="form-group row">
+    <div class="form-group">
         @Html.LabelFor(m => m.Applicant.BirthDate, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Applicant.BirthDate, new { @class = "date-picker form-control", placeholder = "dd/MM/yyyy", @readonly = "readonly" })
         </div>
     </div>
-
-    <div class="form-group row">
+    <div class="form-group">
         @Html.LabelFor(m => m.Applicant.IdNumber, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Applicant.IdNumber, new { @class = "form-control" })
         </div>
     </div>
-
-    <div class="form-group row">
+    <div class="form-group">
         @Html.LabelFor(m => m.Applicant.Race, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.DropDownListFor(m => m.Applicant.Race, new SelectList(Model.Races, "Name", "Name"), "Select Race", new { @class = "form-control" })
         </div>
     </div>
-
-    <div class="form-group row">
+    <div class="form-group">
         @Html.LabelFor(m => m.Applicant.Qualification, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.DropDownListFor(m => m.Applicant.Qualification, new SelectList(Model.Qualifications, "Name", "Name"), "Select Qualification", new { @class = "form-control" })
         </div>
     </div>
-
-    <div class="form-group row">
+    <div class="form-group">
         @Html.LabelFor(m => m.Applicant.ResidentialAddress, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextAreaFor(m => m.Applicant.ResidentialAddress, new { @class = "form-control" })
         </div>
     </div>
-
-    <div class="form-group row">
+    <div class="form-group">
         <div class="col-md-10">
             @Html.CheckBoxFor(m => m.Applicant.Acknowledgement, new { @class = "control-label" })
             @Html.LabelFor(m => m.Applicant.Acknowledgement)
         </div>
     </div>
+    @Html.HiddenFor(m => m.Applicant.UserId)
+    @Html.HiddenFor(m => m.Applicant.RegistrationDate, new { @Value = DateTime.Now.ToShortDateString(), @class = "form-control", @readonly = "readonly" })
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Create Profile" class="btn btn-default" />
         </div>
     </div>
-
 }
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryval")
 
-    <script src="~/Scripts/TsandCs.js"></script>
     <script>
-        $(function() {
+        $(function () {
             $(".date-picker").datepicker({
-                format:'dd/M/yyyy',
+                format: 'dd/M/yyyy',
                 startDate: '-50y',
                 endDate: '-10y',
                 immediateUpdates: true,

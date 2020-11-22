@@ -18,16 +18,17 @@ namespace CodeTheCloud.Controllers
             _context = new ApplicationDbContext();
         }
 
-
         public ActionResult ApplicantDetails()
         {
             var userId = User.Identity.GetUserId();
 
-            var applicant = _context.Applicants.FirstOrDefault(a => a.UserId == userId);
+            var applicant = _context.Applicants
+                            .FirstOrDefault(a => a.UserId == userId);
 
             return View("Details", applicant);
         }
 
+        [HttpGet]
         public ActionResult Create(string id)
         {
             var applicant = new Applicant
@@ -44,35 +45,27 @@ namespace CodeTheCloud.Controllers
             return View(model);
         }
 
-
         [HttpPost]
-        public ActionResult Create(ApplicantsViewModel model)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Applicant applicant)
         {
             if (!ModelState.IsValid)
-                return View(model);
-
-            var applicant = new Applicant
             {
-                FirstName = model.Applicant.FirstName,
-                Surname = model.Applicant.Surname,
-                UserId = model.Applicant.UserId,
-                Gender = model.Applicant.Gender,
-                Race = model.Applicant.Race,
-                IdNumber = model.Applicant.IdNumber,
-                BirthDate = model.Applicant.BirthDate,
-                ContactNumber = model.Applicant.ContactNumber,
-                Qualification = model.Applicant.Qualification,
-                ResidentialAddress = model.Applicant.ResidentialAddress,
-                Acknowledgement = model.Applicant.Acknowledgement,
-                RegistrationDate = DateTime.Now.ToShortDateString()
-            };
-
+                var model = new ApplicantsViewModel
+                {
+                    Applicant = applicant,
+                    Races = _context.Races.ToList(),
+                    Qualifications = _context.Qualifications.ToList()
+                };
+                return View(model);
+            }
+            
             _context.Applicants.Add(applicant);
             _context.SaveChanges();
-            return RedirectToAction("Index", "Home");
-           // return RedirectToAction("DocumentsInfo", "Documents", new {id = model.Applicant.UserId});
+            return RedirectToAction("DocumentsInfo", "Documents");
         }
 
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             var profile = _context.Applicants.Find(id);
@@ -90,10 +83,16 @@ namespace CodeTheCloud.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(ApplicantsViewModel model)
         {
             if (!ModelState.IsValid)
+            {
+                model.Races = _context.Races.ToList();
+                model.Qualifications = _context.Qualifications.ToList();
+                
                 return View(model);
+            }
 
             var dbProfile = _context.Applicants.Find(model.Applicant.Id);
 
@@ -114,19 +113,8 @@ namespace CodeTheCloud.Controllers
             _context.Entry(dbProfile).State = EntityState.Modified;
             _context.SaveChanges();
 
-            return RedirectToAction("ApplicantDetails", new {id = model.Applicant.Id});
+            return RedirectToAction("ApplicantDetails");
         }
-
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    return View();
-        //}
 
         protected override void Dispose(bool disposing)
         {
