@@ -50,7 +50,7 @@ namespace CodeTheCloud.Models
         public string ContactNumber { get; set; }
 
         [Required]
-        [Display(Name = "Highest Qualification")]
+        [Display(Name = "Qualification")]
         public string Qualification { get; set; }
 
 
