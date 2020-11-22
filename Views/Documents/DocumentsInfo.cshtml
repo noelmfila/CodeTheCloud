@@ -17,20 +17,19 @@
     Upload supporting documents such as a copy of your Resume/CV, Identity Document and Certificates.
 </div>
 <hr/>
-@Html.Hidden("id", @ViewContext.RouteData.Values["id"])
 
-
-@*<div id="listOfDocuments">
-    @{ Html.RenderAction("GetDocuments", "Documents", new { id = Url.RequestContext.RouteData.Values["id"] });}
-</div>*@
+<div id="listOfDocuments">
+    @{ Html.RenderAction("GetDocuments", "Documents", null);}
+</div>
 
 <div id="createAndEditDocs">
-    @{Html.RenderAction("CreateDocument", "Documents", new {id = ViewContext.RouteData.Values["id"] });}
+    @{ Html.RenderAction("CreateDocument", "Documents", null );}
 </div>
 
 <div class="form-group">
+    <hr/>
     <div class="col-md-offset-2 col-md-10">
-        @Html.ActionLink("Finish", "ApplicantDetails", "Applicants", new {id = Url.RequestContext.RouteData.Values["id"]}, null)
+        @Html.ActionLink("Finish", "ApplicantDetails", "Applicants", null, null)
     </div>
 </div>
 

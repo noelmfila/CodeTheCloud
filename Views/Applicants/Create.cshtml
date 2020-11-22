@@ -12,7 +12,7 @@ Create Profile
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.Applicant.UserId)
     <hr />
-    @Html.ValidationSummary(true, "Please specify values for all fields!", new { @class = "text-danger" })
+    @Html.ValidationSummary(true, "Specify values for the fields below!", new { @class = "text-danger" })
 
     <div class="form-group row">
         @Html.LabelFor(m => m.Applicant.FirstName, new { @class = "col-md-2 control-label" })

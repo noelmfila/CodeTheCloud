@@ -8,28 +8,23 @@
 
 {
     @Html.AntiForgeryToken()
-    <h4>Upload a new document</h4>
+    <h3>Upload new document</h3>
     <div>
-        Enter the description for the document and then choose the file. When you click on the Upload button this document will appear in a row above. You can then add another document.
+        Provide the document description and then choose the file.This document will appear on a row above when you click on the Upload button, and you can then add another document.
     </div>
     <div>
         <br />
     </div>
     <div class="form-group row">
-        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-form-label col-md-2" })
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            <div class="help-tip">
-                <p>
-                    Please state what the content of the document is. Example would be ID, passport, CV, work permit, qualification, etc.
-                </p>
-            </div>
         </div>
     </div>
 
     <div class="form-group row">
-        @Html.LabelFor(model => model.FormFile, htmlAttributes: new { @class = "col-form-label col-md-2" })
+        @Html.LabelFor(model => model.FormFile, htmlAttributes: new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.FormFile, new { type = "file", @class = "form-control" })
             @Html.ValidationMessageFor(model => model.FormFile)
@@ -45,7 +40,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <div class="offset-md-2 col-md-10">
+        <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Upload" class="btn btn-default" id="btnUpload" />
         </div>
     </div>
@@ -56,7 +51,7 @@
     <script>
         $(function () {
             $("#btnUpload").click(function () {
-                var fileInput = document.getElementById('Document_FormFile');
+                var fileInput = document.getElementById('FormFile');
                 var filePath = fileInput.value;
                 var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
                 if (!allowedExtensions.exec(filePath)) {
@@ -64,7 +59,7 @@
                     fileInput.value = '';
                     return false;
                 }
-                var files = $('#Document_FormFile')[0].files;
+                var files = $('#FormFile')[0].files;
                 for (var i = 0; i < files.length; i++) {
                     if (files[i].size > 5242880) {
                         alert("file size is more than 5MB");
