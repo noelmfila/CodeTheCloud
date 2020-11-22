@@ -12,7 +12,7 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace CodeTheCloud.Controllers
-{
+{   [Authorize]
     public class DocumentsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,18 +24,7 @@ namespace CodeTheCloud.Controllers
             _repository = new DocumentsRepository(_context);
         }
 
-        //public ActionResult Upload(DocumentViewModel model)
-        //{
-        //    HttpPostedFileBase file  = model.FormFile;
-        //    if (file != null)
-        //    {
-        //        var docName = Path.GetExtension(file.FileName);
-        //        file.SaveAs(Server.MapPath("//Content//Uploads") + model.FormFile);
-        //    }
-        //    return View();
-        //}
-
-
+        [HttpGet]
         public ActionResult DocumentsInfo()
         {
            
@@ -56,6 +45,7 @@ namespace CodeTheCloud.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult UploadDocument(DocumentViewModel model)
         {
             HttpPostedFileBase file = model.FormFile;
@@ -103,6 +93,7 @@ namespace CodeTheCloud.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult DeleteDocument(int id, string azureFileName, string user)
         {
             _repository.DeleteDocument(id);
