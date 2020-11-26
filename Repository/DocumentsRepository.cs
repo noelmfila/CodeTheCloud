@@ -3,6 +3,7 @@ using CodeTheCloud.ViewModels;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Web.Mvc;
 
 namespace CodeTheCloud.Repository
 {
@@ -62,18 +63,11 @@ namespace CodeTheCloud.Repository
 
         public void UpdateDocument(DocumentViewModel model)
         {
-            var updateDocument = new Document
-            {
-                ApplicantId = model.ApplicantId,
-                Description = model.Description,
-                FileName = model.FileName,
-                UploadDate = model.UploadDate,
-                FilePath = model.FilePath,
-                AzureFileName = model.AzureFileName,
-                FileExtension = model.FileExtension
-            };
+            var dbDoc = _context.Documents.SingleOrDefault(d => d.Id == model.Id);
+          
+            dbDoc.AzureFileName = model.AzureFileName;
 
-            _context.Entry(updateDocument).State = EntityState.Modified;
+            _context.Entry(dbDoc).State = EntityState.Modified;
             _context.SaveChanges();
         }
 

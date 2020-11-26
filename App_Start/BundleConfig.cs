@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace CodeTheCloud
 {
@@ -14,6 +13,8 @@ namespace CodeTheCloud
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
+            bundles.Add(new ScriptBundle("~/bundles/jqueryunobtrusive").Include(
+                "~/Scripts/jquery.unobtrusive-ajax*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
@@ -24,7 +25,7 @@ namespace CodeTheCloud
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-Readable.css",
                       "~/Content/bootstrap-datepicker3.min.css",
                       "~/Content/site.css"));
         }

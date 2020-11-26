@@ -12,7 +12,8 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace CodeTheCloud.Controllers
-{   [Authorize]
+{
+    [Authorize]
     public class DocumentsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -27,8 +28,6 @@ namespace CodeTheCloud.Controllers
         [HttpGet]
         public ActionResult DocumentsInfo()
         {
-           
-
             return View("DocumentsInfo");
         }
 
@@ -94,13 +93,13 @@ namespace CodeTheCloud.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteDocument(int id, string azureFileName, string user)
+        public ActionResult DeleteDocument(int id, string azureFileName)
         {
             _repository.DeleteDocument(id);
             CloudBlobContainer sampleContainer = GetCloudBlobContainer();
             CloudBlockBlob blob = sampleContainer.GetBlockBlobReference(azureFileName);
             blob.Delete();
-            return RedirectToAction("GetDocuments", new { id = user });
+            return RedirectToAction("GetDocuments");
         }
 
         private void SendFilesToAzure(string pathToTempFile, string uniqueFileName, string type)
@@ -144,10 +143,10 @@ namespace CodeTheCloud.Controllers
         private CloudBlobContainer GetCloudBlobContainer()
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-                CloudConfigurationManager.GetSetting("somestorage"));
+                CloudConfigurationManager.GetSetting("codethecloudstorage"));
 
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-            CloudBlobContainer container = blobClient.GetContainerReference("someblobstorage");
+            CloudBlobContainer container = blobClient.GetContainerReference("codethecloudblob");
             return container;
         }
         private int GetCurrentId()
