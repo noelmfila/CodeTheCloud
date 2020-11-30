@@ -39,7 +39,7 @@ namespace CodeTheCloud.Migrations
                 new Qualification { Id = 8, Name = "Post Graduate"},
                 new Qualification { Id = 9, Name = "Masters"},
                 new Qualification { Id = 10, Name = "Doctorate"},
-                new Qualification { Id = 10, Name = "Other"}
+                new Qualification { Id = 11, Name = "Other"}
             );
 
             context.Genders.AddOrUpdate(p => p.Id,

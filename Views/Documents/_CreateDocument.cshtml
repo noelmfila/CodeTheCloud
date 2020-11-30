@@ -54,14 +54,14 @@
                 var filePath = fileInput.value;
                 var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
                 if (!allowedExtensions.exec(filePath)) {
-                    alert('Please upload file having extensions .jpeg/.jpg/.png/.pdf only.');
+                    bootbox.alert('Please upload files having extensions .jpeg/.jpg/.png/.pdf only.');
                     fileInput.value = '';
                     return false;
                 }
                 var files = $('#FormFile')[0].files;
                 for (var i = 0; i < files.length; i++) {
                     if (files[i].size > 5242880) {
-                        alert("file size is more than 5MB");
+                        bootbox.alert("The file size is more than 5MB");
                         return false;
                     }
                 }
